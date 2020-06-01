@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * @Description: java类作用描述
+ * @Description: 日期转换工具类
  * @Author: weiyan
  * @CreateDate: 2020/2/2
  */
@@ -42,5 +42,30 @@ public class DateUtil {
         return resultDate;
     }
 
+    /**
+     * 日期字符串转时间戳
+     * @param dateStr
+     * @param format
+     * @return
+     */
+    public long StringToStamp(String dateStr, String format){
+        Date resultDate = null;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(format);
+            resultDate = sdf.parse(dateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return resultDate.getTime();
+    }
+
+    /**
+     * 获取前多少天时间
+     * @param beforeNum   前多少天
+     * @return
+     */
+    public Date getBeforeDay(int beforeNum){
+        return new Date(System.currentTimeMillis() - beforeNum * 1000 * 60 * 60 * 24);
+    }
 
 }
